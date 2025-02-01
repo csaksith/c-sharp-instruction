@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "Live Preview",
+			"workspacePath": "/Users/Celina/Desktop/repos/c-sharp-repos/c-sharp-instruction/Ch04DemosNumbersStrings",
+			"problemMatcher": [],
+			"label": "Live Preview: Run Server"
+		},
+		{
+			"type": "dotnet",
+			"task": "build",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "dotnet: build"
+		},
+		{
+			"type": "dotnet",
+			"task": "build /Users/Celina/Desktop/repos/c-sharp-repos/c-sharp-instruction/Ch04DemosNumbersStrings/Ch04DemosNumbersStrings.csproj",
+			"file": "/Users/Celina/Desktop/repos/c-sharp-repos/c-sharp-instruction/Ch04DemosNumbersStrings/Ch04DemosNumbersStrings.csproj",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "dotnet: build /Users/Celina/Desktop/repos/c-sharp-repos/c-sharp-instruction/Ch04DemosNumbersStrings/Ch04DemosNumbersStrings.csproj"
+		}
+	]
+}
