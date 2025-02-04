@@ -16,7 +16,7 @@
                 string director = GetString("Enter director: ");
                 // instead of doing console.writeline and console.readline 
                 //Print("Continue? (y/n): ");
-                choice = GetString("Continue? (y/n): ");
+                choice = GetString("Continue? (y/n): ", "y","n");
             }//Console.WriteLine("Goodbye!");
             Print("Goodbye!");
         }
@@ -45,7 +45,24 @@
             }
             return nbr;
         }
-
+        static string GetString(string prompt, string str1, string str2)
+        {
+            string retStr = "";
+            bool success = false;
+            while (!success)
+            {
+                retStr = GetString(prompt);
+                if (retStr.ToLower() == str1 || retStr.ToLower() == str2)
+                {
+                    success = true;
+                }
+                else
+                {
+                    Print("Error: Entry must be either '" + str1 + "' or '" + str2+ "'.Try again.");
+                }
+            }
+            return retStr;
+        }
         // GetString method: accepts a prompt: string, returns a string from the console
         static string GetString(string prompt)
         {
@@ -58,5 +75,4 @@
             Console.Write(msg + endLine);
         }
     }
-}
 }
