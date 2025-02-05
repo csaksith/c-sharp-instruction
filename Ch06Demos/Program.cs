@@ -16,7 +16,7 @@
                 string director = GetString("Enter director: ");
                 // instead of doing console.writeline and console.readline 
                 //Print("Continue? (y/n): ");
-                choice = GetString("Continue? (y/n): ", "y","n");
+                choice = GetString("Continue? (y/n): ", "y", "n");
             }//Console.WriteLine("Goodbye!");
             Print("Goodbye!");
         }
@@ -45,20 +45,21 @@
             }
             return nbr;
         }
+        // method: ensures that the user inputs one of two specific strings.
         static string GetString(string prompt, string str1, string str2)
         {
-            string retStr = "";
-            bool success = false;
-            while (!success)
+            string retStr = ""; // initialize the return string
+            bool success = false; // track whether the input is valid
+            while (!success) // keep looping until valid input is entered
             {
-                retStr = GetString(prompt);
+                retStr = GetString(prompt); // ask the user for input using the other GetString() method
                 if (retStr.ToLower() == str1 || retStr.ToLower() == str2)
                 {
                     success = true;
                 }
                 else
                 {
-                    Print("Error: Entry must be either '" + str1 + "' or '" + str2+ "'.Try again.");
+                    Print("Error: Entry must be either '" + str1 + "' or '" + str2 + "'.Try again.");
                 }
             }
             return retStr;

@@ -63,11 +63,11 @@
                         // increment count
                         // output message 
                         // try again? 
-                        Print("Try again? (y/n): ");
-                        choice = Console.ReadLine().ToLower();
+                        
                     }
+                    Print("Try again? (y/n): ");
+                    choice = Console.ReadLine().ToLower();
                 }
-
             }
             Print("Goodbye!!");
             static int Num(Random rand)
