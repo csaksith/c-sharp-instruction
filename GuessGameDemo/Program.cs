@@ -4,6 +4,9 @@ namespace GuessGameDemo
 {
     internal class Program
     {
+        // constants 
+        const int MIN_VAL = 1;
+        const int MAX_VAL = 100;
         static void Main(string[] args)
         {
             Print("Welcome to the Guessing Game!");
@@ -18,11 +21,11 @@ namespace GuessGameDemo
             {
                 // play game
                 // get random number (theNumber: int)
-                int theNumber = rand.Next(1, 101);
+                int theNumber = rand.Next(MIN_VAL,MAX_VAL+1);
                 // count: int = 0;
                 int count = 0;
                 int guess = 0;
-                Print("I'm thinking of a number from 1 to 100. \nTry to guess it. \n");
+                Print("I'm thinking of a number from " + MIN_VAL + " to " + MAX_VAL + ".\nTry to guess it.\n");
                 Print("** DEBUG theNumber = " + theNumber);
                 // play game until guess == theNumber
                 while (guess != theNumber)
@@ -35,20 +38,7 @@ namespace GuessGameDemo
                     if (diff == 0)
                     {
                         // diff == 0 => WIN! + specialMsg 
-                        Print("You got it in " + count + " tries.");
-                        // specialMsg: count <=3, count <= 7, else..
-                        if (count <= 3)
-                        {
-                            Print("Great work! You are a mathematical wizard.");
-                        }
-                        else if (count <= 7)
-                        {
-                            Print("Not too bad! You've got some potential.");
-                        }
-                        else
-                        {
-                            Print("What took you so long? Maybe you should take some lessons.");
-                        }
+                        DisplayWinnerMessage(count);
                         // & display message:
                         
                     }
@@ -80,7 +70,23 @@ namespace GuessGameDemo
             }
             Print("Bye! Come back again soon! :)");
         }
-
+        static void DisplayWinnerMessage(int count)
+        {
+            Print("You got it in " + count + " tries.");
+            // specialMsg: count <=3, count <= 7, else..
+            if (count <= 3)
+            {
+                Print("Great work! You are a mathematical wizard.");
+            }
+            else if (count <= 7)
+            {
+                Print("Not too bad! You've got some potential.");
+            }
+            else
+            {
+                Print("What took you so long? Maybe you should take some lessons.");
+            }
+        }
         static void Print(string msg)
         {
             Console.WriteLine(msg);
@@ -120,13 +126,14 @@ namespace GuessGameDemo
             {
                 Console.Write(prompt);
                 nbr = Int32.Parse(Console.ReadLine());
-                if (nbr >= 1 && nbr <= 100)
+                if (nbr >= MIN_VAL && nbr <= MAX_VAL)
                 {
                     success = true;
                 }
                 else
                 {
-                    Print("Error: entry must be between 1 and 100.");
+                    Print("Error: entry must be between " + MIN_VAL + "and " + MAX_VAL);
+
                 }
             }
             return nbr;

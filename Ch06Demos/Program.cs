@@ -60,6 +60,7 @@
                 else
                 {
                     Print("Error: Entry must be either '" + str1 + "' or '" + str2 + "'.Try again.");
+                    //this is for choice = GetString("Continue? (y/n): ", "y", "n");
                 }
             }
             return retStr;
