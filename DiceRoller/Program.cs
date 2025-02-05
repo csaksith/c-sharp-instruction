@@ -11,7 +11,7 @@
                 string dice = GetString("Roll the dice? (y/n) ");
                 int d1 = GetDie("Die 1: ");
                 int d2 = GetDie("Die 2: ");
-
+                int total = GetString("Total: ");
 
 
 
