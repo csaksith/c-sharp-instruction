@@ -21,7 +21,7 @@ namespace GuessGameDemo
             {
                 // play game
                 // get random number (theNumber: int)
-                int theNumber = rand.Next(MIN_VAL,MAX_VAL+1);
+                int theNumber = rand.Next(MIN_VAL, MAX_VAL + 1);
                 // count: int = 0;
                 int count = 0;
                 int guess = 0;
@@ -40,7 +40,7 @@ namespace GuessGameDemo
                         // diff == 0 => WIN! + specialMsg 
                         DisplayWinnerMessage(count);
                         // & display message:
-                        
+
                     }
                     else if (diff < -10)
                     {
@@ -125,7 +125,26 @@ namespace GuessGameDemo
             while (!success)
             {
                 Console.Write(prompt);
-                nbr = Int32.Parse(Console.ReadLine());
+                // exception
+                // was user entry a whole number?
+                // Parse is what throws the exception, then it will go straight to the catch block
+                try
+                {
+                    nbr = Int32.Parse(Console.ReadLine());
+                }
+                //catch
+                //{
+                    //Print("Error: entry must be a whole number.");
+                    //continue;
+                //}
+                catch (Exception e)
+                {
+                    Print("Error: entry must be a whole number.");
+                    //Console.Error.WriteLine("e.Message: "+e.Message);
+                    //Console.Error.WriteLine("e.ToString(): " + e.ToString());
+                    continue;
+
+                }
                 if (nbr >= MIN_VAL && nbr <= MAX_VAL)
                 {
                     success = true;
