@@ -1,54 +1,71 @@
 ﻿namespace SalesReport {
     internal class Program {
         static void Main(string[] args) {
-            Console.WriteLine("The Sales Report Application");
+            PrintLine("Welcome to The Sales Report Application!");
 
             // for project 8-2 Sales Report
-            double[,] sales = { {1540.0, 2010.0, 2450.0, 1845.0},
-                                {1130.0, 1168.0, 1847.0, 1491.0},
-                                {1580.0, 2305.0, 2710.0, 1284.0},
-                                {1105.0, 4102.0, 2391.0, 1576.0}};
+            decimal[,] sales = { {1540.0m, 2010.0m, 2450.0m, 1845.0m}, // Region 1
+                                {1130.0m, 1168.0m, 1847.0m, 1491.0m}, // Region 2
+                                {1580.0m, 2305.0m, 2710.0m, 1284.0m}, // Region 3
+                                {1105.0m, 4102.0m, 2391.0m, 1576.0m}  // Region 4
+            };
+            decimal sum = 0.0m;
 
-            // grid 5 x 5
-            // Region   Q1  Q2  Q3  Q4
-            // 1
-            // 2
-            // 3
-            // 4
-            string[,] grid = new string[5,5];
-            grid[0,0]="Region";
-            grid[0,1]="Q1";
-            grid[0,2]="Q2";
-            grid[0,3]="Q3";
-            grid[0,4]="Q4";
-            grid[1,0]="1";
-            grid[2,0]="2";
-            grid[3,0]="3";
-            grid[4,0]="4";
-
-            // print grid for titles;
-            string gridString = "";
-            for (int i = 0; i<grid.GetLength(0); i++) {
-                for (int j = 0; j<grid.GetLength(1); j++) {
-                    gridString+=grid[i,j]+"\t";
-                }
-                gridString+="\n";
-            }
-            // add sales data into the grid
+            // 1. dump data to console by region (rows), quarter (columns)
+            PrintLine("Region\tQ1\tQ2\tQ3\tQ4");
             for (int i = 0; i<sales.GetLength(0); i++) {
+                Print((i+1).ToString("c")+"\t");// Region Number
                 for (int j = 0; j<sales.GetLength(1); j++) {
-                    grid[i+1,j+1]=sales[i,j].ToString("C");
+                    Print(sales[i,j].ToString("c")+"\t");
+                }
+                PrintLine("");
+            }
+            PrintLine("");
+            // 2. sum sales by region (Regions 1,2,3,4)
+            PrintLine("Sales by Region");
+            for (int i = 0; i<sales.GetLength(0); i++) {
+                Print("Region "+(i+1)+": ");
+                 sum = 0.0m;
+                for (int j = 0; j<sales.GetLength(1); j++) {
+                    sum+=sales[i,j];
+                }
+                PrintLine(sum.ToString("c"));
+            }
+            PrintLine("");
+            // 3. sum sales by quarter (Q1,Q2,Q3,Q4)
+            PrintLine("Sales by Quarter");
+            for (int i = 0; i<sales.GetLength(0); i++) {
+                Print("Q "+(i+1)+": ");
+                 sum = 0.0m;
+                for (int j = 0; j<sales.GetLength(1); j++) {
+                    sum+=sales[j,i];
+                }
+                PrintLine(sum.ToString("c"));
+            }
+            PrintLine("");
+            // 4. total sales (sum of all data)
+
+             sum = 0.0m;
+            Print("Total Sales: ");
+            
+            for (int i = 0; i<sales.GetLength(0); i++) {
+               
+                for (int j = 0; j<sales.GetLength(1); j++) {
+                    sum+=sales[i,j];
                 }
             }
+            PrintLine(sum.ToString("c"));
+            PrintLine("");
 
-            for (int i = 0;i<sales.GetLength(0); i++) {
-                for (int j = 0; j<sales.GetLength(1); j++) {
-                    Console.Write(grid[i,j]);
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine("Goodbye!~");
+            PrintLine("Goodbye!~");
+            
+        }
 
+        static void PrintLine(string message) {
+            Console.WriteLine(message);
+        }
+        static void Print(string message) {
+            Console.Write(message);
         }
     }
 }
