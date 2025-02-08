@@ -13,10 +13,12 @@ namespace WizardInventory {
             // edit and drop command
             // display message if user enters an invalid number for item
             PrintLine("COMMAND MENU\nshow - Show all items\ngrab - Grab an item\nedit - Edit an item\ndrop - Drop an item\nexit - Exit program");
-            List<string> items = new List<string>();
-            items.Add("wooden staff");
-            items.Add("wizard hat");
-            items.Add("cloth shoes");
+
+
+            List<string> myItems = new List<string>();
+            myItems.Add("wooden staff");
+            myItems.Add("wizard hat");
+            myItems.Add("cloth shoes");
 
             List<string> inventoryItems = new List<string>();
             inventoryItems.Add("wooden staff");
@@ -27,26 +29,50 @@ namespace WizardInventory {
             string command = "";
             while (command!="exit") {
                 Print("Command: ");
+
                 command=Console.ReadLine();
                 // show command
                 if (command=="show") {
-                    for (int i = 0; i<items.Count; i++) {
-                        PrintLine(items[i]);
+                    for (int i = 0; i<myItems.Count; i++) {
+                        PrintLine($"{i+1}.{myItems[i]}");
                     }
                 }
                 else if (command=="grab") {
-                    if (items.Count>=4) {
+                    if (myItems.Count>=4) {
                         PrintLine("You can't carry any more items. Drop something first.");
                     }
                     else {
                         Print("Name: ");
                         string newItem = Console.ReadLine();
                         // add new item to inventory items
-                        items.Add(newItem);
+                        myItems.Add(newItem);
                         PrintLine($"{newItem} was added.");
                     }
                 }
-                else if (command == "exit") {
+                else if (command=="edit") {
+
+                    PrintLine("Number: ");
+                    int number = Int32.Parse(Console.ReadLine());
+                    while (!int.TryParse(Console.ReadLine(),out number)||number<1||number>4) {
+                            PrintLine("Invalid: Choose a number between 1 - 4,");
+                            continue;
+                        }
+
+
+                    PrintLine("Updated name: ");
+                    string updatedName = Console.ReadLine();
+                    myItems[number-1]=updatedName;
+                    PrintLine($"Item number {number} was updated.");
+
+                }
+                else if (command=="drop") {
+                    Print("Number: ");
+                    int number = Int32.Parse(Console.ReadLine());
+                    string itemToRemove = myItems[number-1];
+                    myItems.Remove(itemToRemove);
+                    PrintLine($"{itemToRemove} was dropped.");
+                }
+                else if (command=="exit") {
                     PrintLine("");
                     PrintLine("~Goodbye~");
                 }
@@ -54,8 +80,8 @@ namespace WizardInventory {
 
 
 
-                
-                
+
+
             }
 
             static void Print(string message) {
