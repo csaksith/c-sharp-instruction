@@ -81,15 +81,14 @@ string fullName = firstName + " "+lastName;
 
 
 //escape sequences - tab, newLine, backslash
-string sentence = "abc\tdef\nghi";
+string sentence = "abc\tdef\tghi";
 Console.WriteLine("sentence = "+sentence);
 string reposFolder = "c:\\repos";
 Console.WriteLine("repos = "+reposFolder);
 
 string rawMessage = """
 hello
-nice to meet you
-you too
+nice to meet you 
 """;
 Console.WriteLine(rawMessage);
 
