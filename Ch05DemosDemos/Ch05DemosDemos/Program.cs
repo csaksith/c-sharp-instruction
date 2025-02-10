@@ -183,10 +183,10 @@
             for (i=0; i<=10; i++) {
                 sum +=i;
                 numberStr+=i+" ";
-                Console.WriteLine(numberStr);
-                Console.WriteLine("sum = "+sum);
+                
             }
-            
+            Console.WriteLine(numberStr);
+            Console.WriteLine("sum = "+sum);
 
             // count 0 to 100 by 5
             for (i=0; i<=10; i+=5) {
