@@ -15,27 +15,35 @@
             return result;
         }
 
-        public static int PromptInt(string message,int min,int max) {
-            int result = 0;
+        public static double PromptDouble(string prompt) {
+            double result = 0;
             bool isValid = false;
-            // validation: 1) whole #, 2) range
             while (!isValid) {
-                result=PromptInt(message);
-                if (result>=min&&result<=max) {
+                Print(prompt);
+                if (Double.TryParse(Console.ReadLine(),out result)) {
                     isValid=true;
                 }
                 else {
-                    PrintLine("Error - int must be within range "+min+" - "+max);
+                    PrintLine("Error - invalid double.");
                 }
             }
             return result;
         }
 
-        public static double PromptDouble(string prompt) {
-            double result = 0;
+        public static decimal PromptDecimal(string prompt) {
+            decimal result = 0m;
+            bool isValid = false;
+            while (!isValid) {
+                Print(prompt);
+                if (Decimal.TryParse(Console.ReadLine(),out result)) {
+                    isValid=true;
+                }
+                else {
+                    PrintLine("Error - invalid decimal.");
+                }
+            }
             return result;
         }
-
         public static string PromptString(string prompt) {
             Print(prompt);
             return Console.ReadLine();
@@ -51,9 +59,8 @@
                         isValid=true;
                     }
                     else {
-                        PrintLine("Error - string must be either "+str1+" ir "+str2);
+                        PrintLine("Error - string must be either "+str1+" or "+str2);
                     }
-
                 }
                 else {
                     PrintLine("Error - Entry is required.");
@@ -65,7 +72,7 @@
         public static void Print(string message) {
             Console.Write(message);
         }
-        public static void PrintLine(string message) {
+        public static void PrintLine(string message = "") {
             Console.WriteLine(message);
         }
     }
