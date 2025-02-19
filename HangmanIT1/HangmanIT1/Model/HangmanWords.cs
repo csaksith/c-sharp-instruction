@@ -7,6 +7,7 @@ namespace HangmanIT1.Model {
         // constructor for words
         public HangmanWords() {
             words=new List<string> { "pizza","sushi","steak","pasta","tacos","salad","ramen" };
+            //words=new List<string> { "abracadabra","peekaboo","chrysanthumum" };
         }
         // method to get random word from the list
         public string GetRandomWord() {
