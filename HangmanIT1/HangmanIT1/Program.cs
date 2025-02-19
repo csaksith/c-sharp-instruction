@@ -6,19 +6,29 @@ namespace HangmanIT1 {
         static void Main(string[] args) {
             MyConsole.PrintLine("Welcome to Hangman ~ ");
             MyConsole.PrintLine("=====================\n");
-
             // create an instance of HangmanWords
             HangmanWords wordGenerator = new HangmanWords();
             // get random word using getrandomword method
             string randomWord = wordGenerator.GetRandomWord();
-            MyConsole.Print($"Random Word: {randomWord}");
+            MyConsole.Print($"Random Word: {randomWord}\n");
+            string hiddenWord = wordGenerator.GetHiddenWord(randomWord);
+            MyConsole.PrintLine($"Hidden Word: {hiddenWord}");
+
+          
             // create for loop to display hangman stages 1-6
             //MyConsole.PrintLine("Testing hangman stages: \n");
             //for (int i = 0; i<=6; i++) {
             //    MyConsole.PrintLine($"Incorrect Guesses: {i}");
             //    MyConsole.PrintLine(GetHangmanImage(i));
             //    MyConsole.PrintLine(""); 
-
+            //}
+            MyConsole.PrintLine();
+            //string theWord = "pizza";
+            //for (int i = 0; i<theWord.Length; i++){
+            //    MyConsole.PrintLine($"{theWord[i]}");
+            //    if (theWord[i]=='p') {
+            //        MyConsole.PrintLine($"P found... position {i}");
+            //    }
             //}
             MyConsole.PrintLine("\nBye~! ");
             Console.ReadLine();
