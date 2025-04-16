@@ -40,7 +40,7 @@ namespace Ch15AcctBalCalcDemo.UI {
                     a.Deposit(amount);
                 }
                 
-                choice=MyConsole.PromptReqString("Continue (y/n): \n","y","n");
+                choice=MyConsole.PromptReqString("\nContinue (y/n): \n","y","n");
             }
             // processEndOfMonth - interest and fees
             // Display final balances

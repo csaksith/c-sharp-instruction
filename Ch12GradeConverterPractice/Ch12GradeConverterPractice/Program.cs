@@ -14,7 +14,7 @@ namespace Ch12GradeConverterPractice {
                 // display letter grade 
                 MyConsole.PrintLine("Letter grade: "+grade.GradeConverter());
                 // continue? (y/n):
-                choice=MyConsole.PromptReqString("\nContinue? (y/n): ","y","n");
+                choice=MyConsole.PromptReqString("\nContinue? (y/n): \n","y","n");
             }
             MyConsole.PrintLine("Goodbye for now!!~");
         }

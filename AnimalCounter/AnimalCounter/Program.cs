@@ -6,7 +6,7 @@ namespace AnimalCounter {
     internal class Program {
 
         private static void Main(string[] args) {
-            MyConsole.PrintLine("Welcome to the Animal Counter~\n");
+            MyConsole.PrintLine("Welcome to the Animal Counter~\nfc");
             Alligator a = new Alligator();
             MyConsole.PrintLine("Counting alligators...");
             count(a,3);

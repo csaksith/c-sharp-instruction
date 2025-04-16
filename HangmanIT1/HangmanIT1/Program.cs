@@ -2,6 +2,7 @@
 using HangmanIT1.Model;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 
 namespace HangmanIT1 {
     internal class Program {
@@ -19,28 +20,49 @@ namespace HangmanIT1 {
 
             // game variables initialization
             string choice = "y";
-            int incorrectGuesses = 0;
-            bool wordGuessed = false;
-            List<string> lettersGuessed = new List<string>();
-            // get random word using getrandomword method
-            string word = wordGenerator.GetRandomWord();
-            string hiddenWord = wordGenerator.GetHiddenWord(word);
-
-
             while (choice=="y") {
+                int incorrectGuesses = 0;
+                bool wordGuessed = false;
+                List<string> lettersGuessed = new List<string>();
+                // get random word using getrandomword method
+                string word = wordGenerator.GetRandomWord();
+                string hiddenWord = wordGenerator.GetHiddenWord(word);
+
                 while (incorrectGuesses!=6&&!wordGuessed) {
+                    // display the current hangman image
                     MyConsole.PrintLine(GetHangmanImage(incorrectGuesses));
                     MyConsole.Print($"Random Word: {word}\n");
                     MyConsole.PrintLine($"Hidden Word: {hiddenWord}");
-                    string letterGuess = MyConsole.PromptString("Guess a letter: ");
+
+                    // prompt user to guess letter
+                    string letterGuess = MyConsole.PromptString("\nGuess a letter: ");
                     MyConsole.PrintLine($"Letters Guessed: {letterGuess}");
+
                     // add guessed letter to the letters 
-                    if (!lettersGuessed.Contains(letterGuess) && letterGuess.Length==1){
+                    // validate the input is a single length + hasnt been guessed
+                    if (!lettersGuessed.Contains(letterGuess)&&letterGuess.Length==1) {
                         lettersGuessed.Add(letterGuess);
+                        // if statement for if letter guess is in the hidden word
+                        if (word.Contains(letterGuess)) {
+                            hiddenWord=UpdateHiddenWord(word,hiddenWord,letterGuess);
+                            MyConsole.PrintLine("Correct guess~");
+                            if (!hiddenWord.Contains("_")) {
+                                wordGuessed=true;
+                                MyConsole.PrintLine($"You guessed the correct word: {word}!");
+                            }
+                        }
+                        else {
+                            MyConsole.PrintLine("Incorrect guess! Try again. ");
+                            MyConsole.PrintLine($"You have {5-incorrectGuesses} out of 6 guesses left!");
+                            incorrectGuesses++;
+                        }
+                    }
+                    else {
+                        MyConsole.PrintLine("Invalid guess: either already guessed or not a single letter. Try again!");
                     }
                     MyConsole.PrintLine($"You guessed: {letterGuess}");
                 }
-         
+
                 choice=MyConsole.PromptReqString("Play again? (y/n): ","y","n").ToLower();
             }
             MyConsole.PrintLine("\n~Come back soon ~");
@@ -143,5 +165,22 @@ namespace HangmanIT1 {
             return hangmanStages[incorrectGuesses];
 
         }
+
+        // method to reveal hidden word when user enters correct letter
+        static string UpdateHiddenWord(string word,string hiddenWord,string letterGuess) {
+            char[] hiddenArray = hiddenWord.Replace(" ","").ToCharArray();
+            string newHiddenWord = "";
+            // loop through the word and replace underscores with the correct letter
+            for (int i = 0; i<word.Length; i++) {
+                if (word[i].ToString()==letterGuess) {
+                    hiddenArray[i]=letterGuess[0]; // use hidden array to replace underscore with correct letter.
+                }
+                newHiddenWord+=$"{hiddenArray[i]} ";
+            }
+            return newHiddenWord;
+        }
+
+
     }
 }
+
